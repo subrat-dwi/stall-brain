@@ -1,6 +1,6 @@
 <div align="center">
 
-<img src="https://img.shields.io/badge/PS--11-Hazratganj%20Demand%20Forecasting-F59E0B?style=for-the-badge" />
+<img src="https://img.shields.io/badge/PS--11-Hyperlocal%20demand%20forecasting%20for%20Hazratganj%20Demand%20Forecasting-F59E0B?style=for-the-badge" />
 &nbsp;
 
 &nbsp;
@@ -115,6 +115,8 @@ The app is structured across three pages with a clear stepper, ensuring vendors 
 | Icons | Lucide React |
 | Storage | localStorage (forecast history + feedback) |
 | Deployment | Vercel |
+
+Coding Agent used : Copilot with GPT Codex
 
 ---
 
