@@ -158,6 +158,6 @@ Open [http://localhost:5173](http://localhost:5173).
 
 Built with 💛 for the street vendors of Hazratganj, Lucknow.
 
-*APL Hackathon 2025*
+*APL Hackathon 2026*
 
 </div>
