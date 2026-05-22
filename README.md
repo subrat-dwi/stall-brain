@@ -22,7 +22,7 @@ combining live weather, local events, and custom inventory to deliver daily proc
 
 ---
 
-## 👥 Team
+## 👥 Team Code Oxide
 
 | Name | GitHub |
 |------|--------|
