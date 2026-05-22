@@ -93,7 +93,7 @@ export default function HomePage() {
           <div className="flex flex-wrap items-center gap-4">
             <Link
               to="/setup"
-              className="inline-flex items-center justify-center rounded-full bg-[var(--color-primary)] px-8 py-4 text-base font-semibold text-[#0D0D0D] shadow-[0_0_30px_var(--color-primary-glow)] transition hover:bg-[var(--color-primary-dark)]"
+              className="inline-flex items-center justify-center rounded-md bg-[var(--color-primary)] px-8 py-4 text-base font-semibold text-[#0D0D0D] shadow-[0_0_30px_var(--color-primary-glow)] transition hover:bg-[var(--color-primary-dark)]"
             >
               Get Today&apos;s Forecast
             </Link>
@@ -119,7 +119,7 @@ export default function HomePage() {
             ].map((step) => (
               <div
                 key={step.title}
-                className="rounded-2xl border border-[var(--color-border)] bg-[var(--color-bg-card)] p-5"
+                className="rounded-lg border border-[var(--color-border)] bg-[var(--color-bg-card)] p-5"
               >
                 <p className="text-sm font-semibold text-[var(--color-text-primary)]">
                   {step.title}
@@ -132,7 +132,7 @@ export default function HomePage() {
           </div>
         </section>
 
-        <div className="mt-8 flex flex-wrap items-center justify-between gap-4 rounded-2xl border border-[var(--color-border)] bg-[var(--color-bg-card)] px-5 py-4 text-sm">
+        <div className="mt-8 flex flex-wrap items-center justify-between gap-4 rounded-lg border border-[var(--color-border)] bg-[var(--color-bg-card)] px-5 py-4 text-sm">
           <div className="text-[var(--color-text-secondary)]">
             {dateInfo.dateLabel} - {dateInfo.dayName}
           </div>

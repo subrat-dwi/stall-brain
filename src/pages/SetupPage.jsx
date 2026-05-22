@@ -106,7 +106,7 @@ export default function SetupPage() {
       <div className="relative z-10 mx-auto flex min-h-screen max-w-6xl flex-col px-4 pb-12 pt-8 sm:px-6 lg:px-10">
         <Header />
 
-        <div className="mt-6 rounded-2xl border border-[var(--color-border)] bg-[var(--color-bg-card)] px-5 py-4">
+        <div className="mt-6 rounded-lg border border-[var(--color-border)] bg-[var(--color-bg-card)] px-5 py-4">
           <div className="grid gap-4 md:grid-cols-3">
             {steps.map((step) => {
               const isComplete =
@@ -115,7 +115,7 @@ export default function SetupPage() {
               return (
                 <div
                   key={step.id}
-                  className={`flex items-center gap-3 rounded-xl border px-4 py-3 ${
+                  className={`flex items-center gap-3 rounded-lg border px-4 py-3 ${
                     isComplete
                       ? 'border-[var(--color-success)] bg-[rgba(74,222,128,0.12)]'
                       : isActive
