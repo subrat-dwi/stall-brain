@@ -1,0 +1,86 @@
+@import "tailwindcss";
+
+:root {
+  color-scheme: dark;
+  font-family: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+  background-color: #0f0f0f;
+  color: #e5e7eb;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100%;
+  background-color: #0f0f0f;
+  overflow-x: hidden;
+}
+
+#root {
+  min-height: 100svh;
+}
+
+::selection {
+  background: rgba(245, 158, 11, 0.35);
+  color: #0f0f0f;
+}
+
+@keyframes float {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-6px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+@keyframes glow {
+  0% {
+    box-shadow: 0 0 0 rgba(245, 158, 11, 0);
+  }
+  50% {
+    box-shadow: 0 0 24px rgba(245, 158, 11, 0.25);
+  }
+  100% {
+    box-shadow: 0 0 0 rgba(245, 158, 11, 0);
+  }
+}
+
+.float-slow {
+  animation: float 8s ease-in-out infinite;
+}
+
+.glow-amber {
+  animation: glow 4s ease-in-out infinite;
+}
+
+.app-background,
+.app-grid {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+}
+
+.app-background {
+  background:
+    radial-gradient(900px circle at 8% 12%, rgba(245, 158, 11, 0.18), transparent 55%),
+    radial-gradient(760px circle at 88% 16%, rgba(16, 185, 129, 0.18), transparent 60%),
+    radial-gradient(680px circle at 48% 88%, rgba(245, 158, 11, 0.14), transparent 60%);
+  z-index: 0;
+}
+
+.app-grid {
+  background-image: radial-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 0);
+  background-size: 32px 32px;
+  opacity: 0.25;
+  z-index: 1;
+}
