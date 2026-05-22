@@ -4,18 +4,18 @@ function getFeedbackBadge(feedback) {
   if (feedback === 'up') {
     return {
       label: 'Actual: Accurate',
-      color: 'border-emerald-500/40 bg-emerald-500/15 text-emerald-200',
+      color: 'border-(--color-success) bg-[rgba(74,222,128,0.12)] text-(--color-success)',
     }
   }
   if (feedback === 'down') {
     return {
       label: 'Actual: Lower than expected',
-      color: 'border-rose-500/40 bg-rose-500/15 text-rose-200',
+      color: 'border-(--color-danger) bg-[rgba(248,113,113,0.12)] text-(--color-danger)',
     }
   }
   return {
     label: 'Actual: Pending',
-    color: 'border-zinc-700 bg-zinc-800/50 text-zinc-300',
+    color: 'border-(--color-border) bg-(--color-bg-input) text-(--color-text-secondary)',
   }
 }
 
@@ -27,14 +27,18 @@ export default function HistoryLog({ history, collapsed, onToggle }) {
       <button
         type="button"
         onClick={onToggle}
-        className="flex w-full items-center justify-between rounded-2xl border border-zinc-800 bg-[#141414] px-5 py-4 text-left transition hover:border-amber-400/50"
+        className="flex w-full items-center justify-between rounded-2xl border border-(--color-border) bg-(--color-bg-card) px-5 py-4 text-left transition hover:border-(--color-primary)"
         aria-expanded={!collapsed}
       >
         <div>
-          <p className="text-sm font-semibold text-amber-100">Past Forecasts</p>
-          <p className="mt-1 text-xs text-zinc-500">Last 5 predictions</p>
+          <p className="text-sm font-semibold text-(--color-text-primary)">
+            Past Forecasts
+          </p>
+          <p className="mt-1 text-xs text-(--color-text-muted)">
+            Last 5 predictions
+          </p>
         </div>
-        <div className="flex items-center gap-2 text-xs text-zinc-500">
+        <div className="flex items-center gap-2 text-xs text-(--color-text-muted)">
           <Clock className="h-4 w-4" />
           {collapsed ? <ChevronDown size={18} /> : <ChevronUp size={18} />}
         </div>
@@ -45,27 +49,33 @@ export default function HistoryLog({ history, collapsed, onToggle }) {
           {hasItems ? (
             history.map((entry) => {
               const badge = getFeedbackBadge(entry.feedback)
+              const expected = Number.isFinite(entry.expectedCustomers)
+                ? Math.round(entry.expectedCustomers)
+                : '--'
+              const demandValue = Number.isFinite(Number(entry.demandMultiplier))
+                ? Number(entry.demandMultiplier).toFixed(2)
+                : '1.00'
               return (
                 <div
                   key={entry.id}
-                  className="rounded-2xl border border-zinc-800 bg-[#121212] p-4"
+                  className="rounded-2xl border border-(--color-border) bg-(--color-bg-card) p-4"
                 >
                   <div className="flex flex-wrap items-center justify-between gap-3">
                     <div>
-                      <p className="text-sm font-semibold text-zinc-100">
+                      <p className="text-sm font-semibold text-(--color-text-primary)">
                         {entry.stallName}
                       </p>
-                      <p className="text-xs text-zinc-500">
+                      <p className="text-xs text-(--color-text-muted)">
                         {entry.dateLabel}
                       </p>
                     </div>
-                    <span className="rounded-full border border-amber-400/30 bg-amber-500/10 px-3 py-1 text-xs font-semibold text-amber-200">
-                      Expected: {entry.expectedCustomers}
+                    <span className="rounded-full border border-(--color-border) bg-(--color-bg-input) px-3 py-1 text-xs font-semibold text-(--color-text-primary)">
+                      Expected: {expected}
                     </span>
                   </div>
                   <div className="mt-3 flex flex-wrap items-center gap-3 text-xs">
-                    <span className="rounded-full border border-zinc-700 bg-zinc-900/60 px-3 py-1 text-zinc-300">
-                      Demand x{Number(entry.demandMultiplier).toFixed(2)}
+                    <span className="rounded-full border border-(--color-border) bg-(--color-bg-input) px-3 py-1 text-(--color-text-secondary)">
+                      Demand x{demandValue}
                     </span>
                     <span
                       className={`rounded-full border px-3 py-1 ${badge.color}`}
@@ -77,7 +87,7 @@ export default function HistoryLog({ history, collapsed, onToggle }) {
               )
             })
           ) : (
-            <div className="rounded-2xl border border-zinc-800 bg-[#121212] p-4 text-sm text-zinc-500">
+            <div className="rounded-2xl border border-(--color-border) bg-(--color-bg-card) p-4 text-sm text-(--color-text-muted)">
               No forecasts yet. Your history will appear here after the first run.
             </div>
           )}

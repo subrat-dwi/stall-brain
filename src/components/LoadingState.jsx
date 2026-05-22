@@ -33,8 +33,8 @@ export default function LoadingState({ active }) {
   }, [active])
 
   return (
-    <div className="mt-8 rounded-2xl border border-zinc-800 bg-[#151515] p-6">
-      <h3 className="text-lg font-semibold text-amber-100">
+    <div className="mt-8 rounded-2xl border border-[var(--color-border)] bg-[var(--color-bg-card)] p-6">
+      <h3 className="text-lg font-semibold text-[var(--color-text-primary)]">
         Bazaar Brain is working...
       </h3>
       <div className="mt-4 space-y-3">
@@ -45,19 +45,23 @@ export default function LoadingState({ active }) {
           const isActive = index === activeIndex && activeIndex < steps.length
           const isDone = index < activeIndex || activeIndex >= steps.length
 
+          const textColor = isActive
+            ? 'text-[var(--color-primary)] animate-pulse'
+            : isDone
+              ? 'text-[var(--color-text-primary)]'
+              : 'text-[var(--color-text-muted)]'
+
           return (
             <div
               key={step}
-              className="flex items-center gap-3 rounded-xl border border-zinc-800/80 bg-[#101010] px-4 py-3"
+              className="flex items-center gap-3 rounded-xl border border-[var(--color-border)] bg-[var(--color-bg-input)] px-4 py-3"
             >
               {isActive ? (
-                <Loader2 className="h-5 w-5 animate-spin text-amber-300" />
+                <Loader2 className="h-5 w-5 animate-spin text-[var(--color-primary)]" />
               ) : (
-                <CheckCircle2 className="h-5 w-5 text-emerald-400" />
+                <CheckCircle2 className="h-5 w-5 text-[var(--color-success)]" />
               )}
-              <span className={`text-sm ${isDone ? 'text-zinc-200' : 'text-zinc-400'}`}>
-                {step}
-              </span>
+              <span className={`text-sm ${textColor}`}>{step}</span>
             </div>
           )
         })}

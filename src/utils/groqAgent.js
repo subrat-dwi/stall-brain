@@ -6,7 +6,7 @@ Respond ONLY in the following JSON format, with no markdown and no extra keys:
 {
   "summary": "one sentence overview of today",
   "expectedCustomers": number,
-  "peakHours": "e.g. 12–2pm and 6–9pm",
+  "peakHours": "e.g. 12-2pm and 6-9pm",
   "confidenceLevel": "High" | "Medium" | "Low",
   "confidenceReason": "short reason",
   "procurementList": [
@@ -37,6 +37,7 @@ function safeParseJson(content) {
 
 export async function requestGroqForecast({
   stall,
+  items,
   dateLabel,
   dayName,
   weather,
@@ -53,8 +54,13 @@ export async function requestGroqForecast({
     throw error
   }
 
+  const finalItems = Array.isArray(items) && items.length ? items : stall.items
+
   const userPrompt = `Stall type: ${stall.name}
-Stock items: ${stall.items.join(', ')}
+Stock items: ${finalItems.join(', ')}
+The vendor sells these specific items: ${finalItems.join(', ')}
+Generate procurement quantities for each of these exact items only.
+Do not add or suggest items outside this list.
 Date: ${dateLabel}
 Day of week: ${dayName}
 Weather: ${weather.temperature}°C, ${weatherSignal.label}

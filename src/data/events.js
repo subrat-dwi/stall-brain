@@ -96,6 +96,12 @@ export const events = [
     impactMultiplier: 0.95,
   },
   {
+    date: '2025-08-09',
+    name: 'Raksha Bandhan',
+    type: 'public-holiday',
+    impactMultiplier: 1.2,
+  },
+  {
     date: '2025-08-15',
     name: 'Independence Day',
     type: 'public-holiday',
@@ -106,6 +112,12 @@ export const events = [
     name: 'Janmashtami',
     type: 'public-holiday',
     impactMultiplier: 1.25,
+  },
+  {
+    date: '2025-08-27',
+    name: 'Ganesh Chaturthi',
+    type: 'public-holiday',
+    impactMultiplier: 1.2,
   },
   {
     date: '2025-09-05',

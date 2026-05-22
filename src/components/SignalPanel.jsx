@@ -2,22 +2,34 @@ import { CalendarDays, CloudSun, Users } from 'lucide-react'
 
 function getImpactBadge(multiplier) {
   if (multiplier >= 1.2) {
-    return { label: 'High Demand', color: 'bg-emerald-500/20 text-emerald-200 border-emerald-500/40' }
+    return {
+      label: 'High Demand',
+      color:
+        'bg-[rgba(74,222,128,0.15)] text-(--color-success) border-[rgba(74,222,128,0.4)]',
+    }
   }
   if (multiplier <= 0.9) {
-    return { label: 'Low Demand', color: 'bg-rose-500/20 text-rose-200 border-rose-500/40' }
+    return {
+      label: 'Low Demand',
+      color:
+        'bg-[rgba(248,113,113,0.15)] text-(--color-danger) border-[rgba(248,113,113,0.4)]',
+    }
   }
-  return { label: 'Normal', color: 'bg-amber-500/20 text-amber-200 border-amber-500/40' }
+  return {
+    label: 'Normal',
+    color:
+      'bg-[rgba(251,191,36,0.15)] text-(--color-warning) border-[rgba(251,191,36,0.4)]',
+  }
 }
 
 function getCardBorder(multiplier) {
   if (multiplier >= 1.2) {
-    return 'border-emerald-500/40'
+    return 'border-l-4 border-(--color-border) border-l-(--color-success)'
   }
   if (multiplier <= 0.9) {
-    return 'border-rose-500/40'
+    return 'border-l-4 border-(--color-border) border-l-(--color-danger)'
   }
-  return 'border-amber-500/40'
+  return 'border-l-4 border-(--color-border) border-l-(--color-warning)'
 }
 
 export default function SignalPanel({
@@ -34,10 +46,10 @@ export default function SignalPanel({
     return (
       <section className="mt-8">
         <div className="mb-4 flex items-center justify-between">
-          <h2 className="text-lg font-semibold text-amber-100">
+          <h2 className="text-lg font-semibold text-(--color-text-primary)">
             Live demand signals
           </h2>
-          <span className="text-xs uppercase tracking-[0.2em] text-zinc-500">
+          <span className="text-xs uppercase tracking-[0.2em] text-(--color-text-muted)">
             Updating...
           </span>
         </div>
@@ -45,13 +57,13 @@ export default function SignalPanel({
           {[0, 1, 2].map((index) => (
             <div
               key={index}
-              className="rounded-2xl border border-zinc-800 bg-[#1a1a1a] p-5"
+              className="rounded-2xl border border-(--color-border) bg-(--color-bg-card) p-5"
             >
               <div className="space-y-4 animate-pulse">
-                <div className="h-4 w-24 rounded bg-zinc-800" />
-                <div className="h-8 w-20 rounded bg-zinc-800" />
-                <div className="h-3 w-32 rounded bg-zinc-800" />
-                <div className="h-3 w-40 rounded bg-zinc-800" />
+                <div className="h-4 w-24 rounded bg-(--color-bg-input)" />
+                <div className="h-8 w-20 rounded bg-(--color-bg-input)" />
+                <div className="h-3 w-32 rounded bg-(--color-bg-input)" />
+                <div className="h-3 w-40 rounded bg-(--color-bg-input)" />
               </div>
             </div>
           ))}
@@ -77,23 +89,27 @@ export default function SignalPanel({
   return (
     <section className="mt-8">
       <div className="mb-4 flex items-center justify-between">
-        <h2 className="text-lg font-semibold text-amber-100">Live demand signals</h2>
+        <h2 className="text-lg font-semibold text-(--color-text-primary)">
+          Live demand signals
+        </h2>
         {fallbackWeather ? (
-          <span className="text-xs text-amber-200/80">Using fallback weather</span>
+          <span className="text-xs text-(--color-text-secondary)">
+            Using fallback weather
+          </span>
         ) : null}
       </div>
       <div className="grid gap-4 lg:grid-cols-3">
-        <div className={`rounded-2xl border ${weatherBorder} bg-[#1a1a1a] p-5`}>
+        <div className={`rounded-2xl ${weatherBorder} bg-(--color-bg-card) p-5`}>
           <div className="flex items-start justify-between">
             <div>
-              <div className="flex items-center gap-2 text-sm text-zinc-400">
-                <CloudSun size={18} className="text-amber-300" />
+              <div className="flex items-center gap-2 text-sm text-(--color-text-secondary)">
+                <CloudSun size={18} className="text-(--color-primary)" />
                 Weather
               </div>
-              <div className="mt-3 text-3xl font-semibold text-zinc-100">
+              <div className="mt-3 text-3xl font-semibold text-(--color-text-primary)">
                 {Math.round(safeWeather.temperature)}°C
               </div>
-              <div className="mt-2 text-sm text-zinc-400">
+              <div className="mt-2 text-sm text-(--color-text-secondary)">
                 {safeSignal.label}
               </div>
             </div>
@@ -103,22 +119,24 @@ export default function SignalPanel({
               {weatherBadge.label}
             </span>
           </div>
-          <p className="mt-4 text-sm text-zinc-500">
+          <p className="mt-4 text-sm text-(--color-text-muted)">
             {safeSignal.recommendation}
           </p>
         </div>
 
-        <div className={`rounded-2xl border ${eventBorder} bg-[#1a1a1a] p-5`}>
+        <div className={`rounded-2xl ${eventBorder} bg-(--color-bg-card) p-5`}>
           <div className="flex items-start justify-between">
             <div>
-              <div className="flex items-center gap-2 text-sm text-zinc-400">
-                <CalendarDays size={18} className="text-amber-300" />
+              <div className="flex items-center gap-2 text-sm text-(--color-text-secondary)">
+                <CalendarDays size={18} className="text-(--color-primary)" />
                 Events
               </div>
-              <div className="mt-3 text-lg font-semibold text-zinc-100">
+              <div className="mt-3 text-lg font-semibold text-(--color-text-primary)">
                 {eventSummary || 'Regular Day'}
               </div>
-              <div className="mt-2 text-sm text-zinc-500">Lucknow calendar</div>
+              <div className="mt-2 text-sm text-(--color-text-muted)">
+                Lucknow calendar
+              </div>
             </div>
             <span
               className={`inline-flex items-center rounded-full border px-3 py-1 text-xs font-semibold ${eventBadge.color}`}
@@ -126,22 +144,22 @@ export default function SignalPanel({
               {eventBadge.label}
             </span>
           </div>
-          <p className="mt-4 text-sm text-zinc-500">
+          <p className="mt-4 text-sm text-(--color-text-muted)">
             Event impact multiplier: {eventMultiplier.toFixed(2)}x
           </p>
         </div>
 
-        <div className={`rounded-2xl border ${dayBorder} bg-[#1a1a1a] p-5`}>
+        <div className={`rounded-2xl ${dayBorder} bg-(--color-bg-card) p-5`}>
           <div className="flex items-start justify-between">
             <div>
-              <div className="flex items-center gap-2 text-sm text-zinc-400">
-                <Users size={18} className="text-amber-300" />
+              <div className="flex items-center gap-2 text-sm text-(--color-text-secondary)">
+                <Users size={18} className="text-(--color-primary)" />
                 {dayName}
               </div>
-              <div className="mt-3 text-lg font-semibold text-zinc-100">
+              <div className="mt-3 text-lg font-semibold text-(--color-text-primary)">
                 Footfall Trend
               </div>
-              <div className="mt-2 text-sm text-zinc-500">
+              <div className="mt-2 text-sm text-(--color-text-muted)">
                 Weekly pattern for {dayName}
               </div>
             </div>
@@ -151,7 +169,7 @@ export default function SignalPanel({
               {dayBadge.label}
             </span>
           </div>
-          <p className="mt-4 text-sm text-zinc-500">
+          <p className="mt-4 text-sm text-(--color-text-muted)">
             Day-of-week multiplier: {dayMultiplier.toFixed(2)}x
           </p>
         </div>
